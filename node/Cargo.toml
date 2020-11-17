@@ -1,0 +1,57 @@
+[package]
+authors = ['Shawn Tabrizi <shawntabrizi@gmail.com>']
+build = 'build.rs'
+description = 'Synesthesia Network Node'
+edition = '2018'
+homepage = 'https://synesthesia.network'
+license = 'GPL-3.0-or-later'
+name = 'synesthesia'
+repository = 'https://github.com/synesthesia-network/synesthesia/'
+version = '0.8.0'
+
+[[bin]]
+name = 'synesthesia'
+
+[package.metadata.docs.rs]
+targets = ['x86_64-unknown-linux-gnu']
+
+[build-dependencies]
+substrate-build-script-utils = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+
+[dependencies]
+jsonrpc-core = '15.1.0'
+structopt = '0.3.8'
+
+# local dependencies
+synesthesia-runtime = { path = '../runtime' }
+
+# Substrate dependencies
+frame-benchmarking = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+frame-benchmarking-cli = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+pallet-transaction-payment-rpc = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sc-basic-authorship = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sc-cli = { features = ['wasmtime'], git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sc-client-api = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sc-consensus = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sc-consensus-aura = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sc-executor = { features = ['wasmtime'], git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sc-finality-grandpa = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sc-rpc = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sc-rpc-api = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sc-service = { features = ['wasmtime'], git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sc-transaction-pool = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sp-api = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sp-block-builder = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sp-blockchain = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sp-consensus = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sp-consensus-aura = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sp-core = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sp-finality-grandpa = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sp-inherents = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sp-runtime = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+sp-transaction-pool = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+substrate-frame-rpc-system = { git = "https://github.com/paritytech/substrate", branch = "synesthesia" }
+
+[features]
+default = []
+runtime-benchmarks = ['synesthesia-runtime/runtime-benchmarks']
