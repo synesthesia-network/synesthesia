@@ -3594,6 +3594,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "pallet-invite"
+version = "0.8.0"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
+]
+
+[[package]]
 name = "pallet-randomness-collective-flip"
 version = "2.0.0"
 source = "git+https://github.com/paritytech/substrate?branch=synesthesia#11ace4ef8b2ad176293ad6db2b3dd795befd2c79"
@@ -6910,6 +6923,7 @@ dependencies = [
  "pallet-aura",
  "pallet-balances",
  "pallet-grandpa",
+ "pallet-invite",
  "pallet-randomness-collective-flip",
  "pallet-sudo",
  "pallet-timestamp",

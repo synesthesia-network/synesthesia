@@ -264,6 +264,11 @@ impl pallet_sudo::Trait for Runtime {
 	type Call = Call;
 }
 
+impl pallet_invite::Trait for Runtime {
+	type Event = Event;
+	type Currency = Balances;
+}
+
 construct_runtime!(
 	pub enum Runtime where
 		Block = Block,
@@ -277,6 +282,7 @@ construct_runtime!(
 		Grandpa: pallet_grandpa::{Module, Call, Storage, Config, Event},
 		Balances: pallet_balances::{Module, Call, Storage, Config<T>, Event<T>},
 		TransactionPayment: pallet_transaction_payment::{Module, Storage},
+		Invite: pallet_invite::{Module, Call, Event<T>},
 		Sudo: pallet_sudo::{Module, Call, Config<T>, Storage, Event<T>},
 	}
 );
