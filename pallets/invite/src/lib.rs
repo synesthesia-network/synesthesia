@@ -12,22 +12,22 @@ use frame_support::{
 use frame_system::ensure_root;
 use codec::{Encode, Decode};
 
-pub trait Trait: frame_system::Trait {
-	type Event: From<Event<Self>> + Into<<Self as frame_system::Trait>::Event>;
+pub trait Config: frame_system::Config {
+	type Event: From<Event<Self>> + Into<<Self as frame_system::Config>::Event>;
 	type Currency: Currency<Self::AccountId>;
 }
 
-type BalanceOf<T> = <<T as Trait>::Currency as Currency<<T as frame_system::Trait>::AccountId>>::Balance;
+type BalanceOf<T> = <<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
 
 decl_event!(
-	pub enum Event<T> where AccountId = <T as frame_system::Trait>::AccountId {
+	pub enum Event<T> where AccountId = <T as frame_system::Config>::AccountId {
 		UserCreated(Vec<u8>, AccountId),
 	}
 );
 
 // Errors inform users that something went wrong.
 decl_error! {
-	pub enum Error for Module<T: Trait> {
+	pub enum Error for Module<T: Config> {
 		/// Could not generate a valid AccountId
 		CouldNotDecode,
 		/// Account already exists.
@@ -36,7 +36,7 @@ decl_error! {
 }
 
 decl_module! {
-	pub struct Module<T: Trait> for enum Call where origin: T::Origin {
+	pub struct Module<T: Config> for enum Call where origin: T::Origin {
 		// Errors must be initialized if they are used by the pallet.
 		type Error = Error<T>;
 
@@ -60,7 +60,7 @@ decl_module! {
 	}
 }
 
-impl<T: Trait> Module<T> {
+impl<T: Config> Module<T> {
 	pub fn get_account(seed: &[u8]) -> Result<T::AccountId, DispatchError> {
 		let entropy = (b"syn/invite", seed).using_encoded(blake2_256);
 		T::AccountId::decode(&mut &entropy[..]).map_err(|_| Error::<T>::CouldNotDecode.into())
